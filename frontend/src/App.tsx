@@ -1,7 +1,8 @@
+import NotificationButton from "./components/NotificationsButton"
 
 function App() {
   return (
-   <div>algo</div>
+   <div><NotificationButton /></div>
   )
 }
 
