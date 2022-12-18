@@ -6,7 +6,7 @@ const Header = () => {
     <header>
     <div className="dsmeta-logo-container">
         <img src={logo} alt="logo" />
-        <h1>Sale Notification</h1>
+        <h1>Sales Notification</h1>
     </div>
 </header>
   )
