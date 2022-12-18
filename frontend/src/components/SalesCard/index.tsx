@@ -6,19 +6,23 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../../utils/request';
 import { Sale } from '../../models/sale';
+import Spinner from '../Spinner';
 
 const SalesCard = () => {
   const min = new Date(new Date().setDate(new Date().getDate() - 365));
   const max = new Date();
   const [minDate, setMinDate] = useState(min);
   const [maxDate, setMaxDate] = useState(max);
+  const [isLoading, setIsLoading] = useState(false);
   const [sales, setSales] = useState<Sale[]>([]);
   useEffect(() => {
+    setIsLoading(true);
     const dmin = minDate.toISOString().slice(0, 10);
     const dmax = maxDate.toISOString().slice(0, 10);
     axios.get(`${BASE_URL}/sales?minDate=${dmin}&maxDate=${dmax}`)
-    .then((response) => setSales(response.data.content));
+    .then((response) => setSales(response.data.content)).finally(() => setIsLoading(false));
   }, [minDate, maxDate]);
+  if (isLoading) return <div className='loading'><Spinner /></div>;
   return (
     <div className="dsmeta-card">
       <h2 className="dsmeta-sales-title">Vendas</h2>
