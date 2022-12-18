@@ -5,4 +5,8 @@ export type Sale = {
   deals: number;
   amount: number;
   date: number;
-}
+};
+
+export type Props = {
+  saleId: number;
+};
